@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // 프로젝트 절대 경로 사용을 위해 추가
+    "paths": { "@/*": ["./src/*"] }, // 프로젝트 절대 경로 사용을 위해 추가
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
