@@ -1,5 +1,6 @@
 import React from "react";
 import { CountryType } from "./App";
+import CountryItem from "./CountryItem";
 
 type CountryListPropsType = {
   countries: Array<CountryType>;
@@ -17,14 +18,7 @@ const CountryList = (props: CountryListPropsType) => {
     //   CountryClass = "list-group-item";
     // }
 
-    return (
-      <li
-        key={item.no}
-        className={item.visited ? "list-group-item active" : "list-group-item"}
-      >
-        {item.country}
-      </li>
-    );
+    return <CountryItem key={item.no} country={item} />;
   });
 
   return <ul className="list-group">{countries}</ul>;
