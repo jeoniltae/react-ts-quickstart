@@ -97,7 +97,7 @@ let msg = "<i>World</i>";
 // 출력 결과: &lt;i&gt;World&lt;/igt;
 ```
 
-- 브라우저 화면에서 <i></i>태그의 문자열이 그대로 출려됐습니다. 그 이유는 웹 애플리케이션에서 흔히 발생하는 XSS(Cross Site Scripting) 같은 공격에 대비하기 위해서 <i>가 `&lt;i&gt;`로 HTML 인코딩됐기 때문입니다.
+- 브라우저 화면에서 <i></i>태그의 문자열이 그대로 출려됐습니다. 그 이유는 웹 애플리케이션에서 흔히 발생하는 XSS(Cross Site Scripting) 같은 공격에 대비하기 위해서`&lt;i&gt;`로 HTML 인코딩됐기 때문입니다.
 - 만일 HTML마크업 형태의 값을 보간하려고 한다면 두 가지 방법을 사용할 수 있습니다. 첫 번째 방법은 dangerouslySetInnerHTML 특성을 사용하는 것입니다.
 
 ```html
