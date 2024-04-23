@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CountryList from "./CountryList";
+import styles from "./styles";
 
 export type CountryType = {
   no: number;
@@ -50,7 +51,7 @@ const App = () => {
       {/* <h2>
         Hello <span dangerouslySetInnerHTML={{ __html: msg }} />!
       </h2> */}
-      <hr className="dash-style" />
+      <hr style={styles.dashStyle} />
       {addResult(4, 3)}
       <CountryList countries={list} />
     </div>
