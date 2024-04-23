@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CountryList from "./CountryList";
 import styles from "./styles";
+import AppCssModule from './App.module.css';
 
 export type CountryType = {
   no: number;
@@ -45,7 +46,7 @@ const App = () => {
   return (
     <div className="container">
       {/* {}에 보간된 HTML문자열은 인코딩 됨 */}
-      <h2>Hello {msg}!</h2>
+      <h2 className={AppCssModule.test}>Hello {msg}!</h2>
 
       {/* HTML로 나오게 하려면 이렇게 사용2 */}
       {/* <h2>
