@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CountryList from "./CountryList";
 
 export type CountryType = {
@@ -9,16 +9,9 @@ export type CountryType = {
 
 const App = () => {
   // let msg = "<i>World</i>";
-  let msg = <i>World</i>; // HTML로 나오게 하려면 이렇게 사용1
-  const addResult = (x: number, y: number) => {
-    return (
-      <div className="card card-body bg-light mb-3">
-        {x} + {y} = {x + y}
-      </div>
-    );
-  };
-
-  let list: Array<CountryType> = [
+  // let msg = <i>World</i>; // HTML로 나오게 하려면 이렇게 사용1
+  const [msg, setMsg] = useState<string>('World');
+  const [list, setList] = useState<Array<CountryType>>([
     {
       no: 1,
       country: "이집트",
@@ -39,7 +32,14 @@ const App = () => {
       country: "콜롬비아",
       visited: false,
     },
-  ];
+  ]);
+  const addResult = (x: number, y: number) => {
+    return (
+      <div className="card card-body bg-light mb-3">
+        {x} + {y} = {x + y}
+      </div>
+    );
+  };
 
   return (
     <div className="container">
