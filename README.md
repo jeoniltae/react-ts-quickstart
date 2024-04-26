@@ -111,3 +111,65 @@ let msg = "<i>World</i>";
 // let msg = '<i>World</i>';
 let msg = <i>World</i>;
 ```
+
+## 리액트 이벤트
+
+- 리액트가 이벤트를 처리하는 방법은 HTML DOM에서 이벤트를 처리하는 방법과 조금 다릅니다.
+- 리액트는 HTML DOM 이벤트를 추상화하여 여러 브라우저에서 동일한 특성(attribute)을 이용할 수 있도록 이벤트를 정규화 합니다.
+- 또 성능 개선을 위해 모든 이벤트를 리액트 컴포넌트 트리가 렌더링되는 루트 DOM 컨테이너 요소에 연결하고 이벤트를 위임처리 합니다.
+- 이벤트가 발생하면 리액트는 루트 DOM 컨테이너에서 적절한 컴포넌트 요소를 연결하여 실행합니다.
+
+**주의점**
+
+- 이벤트 핸들러를 지정할 때는 카멜 표기법 사용. ex) `onClick`
+- 이벤트를 함수 또는 메서드와 연결할 때는 다음과 같이 {}보간법을 사용함.
+
+```html
+<!-- 함수 또는 메서드 호출 -->
+<button onClick={func}>OK</button>
+<!-- 익명 함수 호출 -->
+<button onClick={ () => alert('hello') }>OK</button>
+```
+
+### 이벤트 적용 방법
+
+**1. 이벤트 핸들러 함수를 정의하여 {}보간법을 이용해 외부 함수를 바인딩 함. 익명 함수도 가능**
+
+```html
+const eventHandler = () => {...};
+
+<!-- JSX 내부에서 외부 함수 바인딩 -->
+<input type="text" onChange={eventHandler} />
+
+<!-- JSX 내부에서 익명 함수 바인딩 -->
+<button onClick={ () => { ... } }>버튼</button>
+```
+
+**2. 이벤트 핸들러 함수의 첫 번째 인자를 이용해 이벤트 아규먼트 값을 이용함.**
+
+```javascript
+const eventHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  setValue(e.target.value);
+};
+```
+
+### 이벤트 아규먼트의 정적 타입
+
+리액트 이벤트 핸들러 함수에서의 이벤트 아규먼트는 브라우저의 종류와 관계없이 이벤트를 처리할 수 있도록 `SyntheticEvent<T>` 타입으로 추상화합니다. SyntheticEvent를 기반으로 확장된 다양한 Event 타입은 다음과 같습니다.
+
+- SyntheticEvent
+- KeyboardEvent
+- ClipboardEvent
+- FocusEvent
+- TouchEvent
+- AnimationEvent
+- ChangeEvent
+- CompositionEvent
+- FormEvent
+- MouseEvent
+- WheelEvent
+- DragEvent
+- UIEvent
+- TransitionEvent
+
+모든 이벤트 타입을 기억할 필요 X. VSCode에서 `onChange`와 같이 작성 후 마우스 포인터를 올리면 툴팁을 통해 이벤트 타입 확인 가능.
