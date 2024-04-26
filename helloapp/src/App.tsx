@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import CountryList from "./CountryList";
 import styles from "./styles";
-import AppCssModule from './App.module.css';
+import AppCssModule from "./App.module.css";
+import Footer from "./Footer";
+import {
+  BasicButton,
+  ItalicButton,
+  UnderLineButton,
+  WhiteUnderlineButton,
+} from "./Button";
 
 export type CountryType = {
   no: number;
@@ -10,9 +17,10 @@ export type CountryType = {
 };
 
 const App = () => {
+  const [theme, setTheme] = useState<string>("basic");
   // let msg = "<i>World</i>";
   // let msg = <i>World</i>; // HTML로 나오게 하려면 이렇게 사용1
-  const [msg, setMsg] = useState<string>('World');
+  const [msg, setMsg] = useState<string>("World");
   const [list, setList] = useState<Array<CountryType>>([
     {
       no: 1,
@@ -55,6 +63,11 @@ const App = () => {
       <hr style={styles.dashStyle} />
       {addResult(4, 3)}
       <CountryList countries={list} />
+      <BasicButton>기본</BasicButton>
+      <ItalicButton>이탤릭</ItalicButton>
+      <UnderLineButton>언더라인</UnderLineButton>
+      <WhiteUnderlineButton>화이트 언더라인</WhiteUnderlineButton>
+      <Footer theme={theme} />
     </div>
   );
 };
