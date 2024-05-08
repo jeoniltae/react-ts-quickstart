@@ -4,6 +4,11 @@ const App1 = () => {
   const [count, setCount] = useState<number>(0);
   const increment = () => {
     setCount(count + 1);
+
+    // 카운트 값이 3씩 증가함
+    // setCount((count) => count + 1);
+    // setCount((count) => count + 1);
+    // setCount((count) => count + 1);
   };
   const decrement = () => {
     setCount(count - 1);
