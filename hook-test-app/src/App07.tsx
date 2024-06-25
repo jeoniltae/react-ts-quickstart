@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 /**
  * 메모제이션이란?
@@ -32,25 +32,31 @@ const App07 = () => {
   const [todo, setTodo] = useState("");
 
   // 새로운 할 일을 추가하는 함수
-  const addTodo = (todo: string) => {
-    let newTodoList = [
-      ...todoList,
-      {
-        id: new Date().getTime(), // 현재 시간을 ID로 사용
-        todo: todo,
-      },
-    ];
-    setTodoList(newTodoList); // 새로운 할 일 목록으로 상태 갱신
-    setTodo(""); // 입력 필드 초기화
-  };
+  const addTodo = useCallback(
+    (todo: string) => {
+      let newTodoList = [
+        ...todoList,
+        {
+          id: new Date().getTime(), // 현재 시간을 ID로 사용
+          todo: todo,
+        },
+      ];
+      setTodoList(newTodoList); // 새로운 할 일 목록으로 상태 갱신
+      setTodo(""); // 입력 필드 초기화
+    },
+    [todoList]
+  );
 
   // 할 일을 삭제하는 함수
-  const deleteTodo = (id: number) => {
-    let index = todoList.findIndex((item) => item.id === id); // 삭제할 할 일의 인덱스 찾기
-    let newTodoList = [...todoList]; // 현재 할 일 목록 복사
-    newTodoList.splice(index, 1); // 해당 인덱스의 아이템 삭제
-    setTodoList(newTodoList); // 새로운 할 일 목록으로 상태 갱신
-  };
+  const deleteTodo = useCallback(
+    (id: number) => {
+      let index = todoList.findIndex((item) => item.id === id); // 삭제할 할 일의 인덱스 찾기
+      let newTodoList = [...todoList]; // 현재 할 일 목록 복사
+      newTodoList.splice(index, 1); // 해당 인덱스의 아이템 삭제
+      setTodoList(newTodoList); // 새로운 할 일 목록으로 상태 갱신
+    },
+    [todoList]
+  );
 
   // useMemo를 사용하여 todoList가 변경될 때만 getTodoListCount 함수를 호출
   const memoizedCount = useMemo<number>(
