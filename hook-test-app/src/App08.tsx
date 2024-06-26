@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react";
-import DateAndTime from "date-and-time";
+// import React, { useEffect, useState } from "react";
+// import DateAndTime from "date-and-time";
+
+import { TimeFormatEnum, useClockTime } from "./hooks/useClockTime";
 
 const App08 = () => {
-  const [currentTime, setCurrentTime] = useState(
-    DateAndTime.format(new Date(), "HH:mm:ss")
-  );
+  const currentTime = useClockTime(1000, TimeFormatEnum.HHmmssKOR);
 
-  useEffect(() => {
-    const handle = setInterval(() => {
-      setCurrentTime(DateAndTime.format(new Date(), "HH:mm:ss"));
-    }, 1000);
+  // const [currentTime, setCurrentTime] = useState(
+  //   DateAndTime.format(new Date(), "HH:mm:ss")
+  // );
 
-    return () => {
-      clearInterval(handle);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handle = setInterval(() => {
+  //     setCurrentTime(DateAndTime.format(new Date(), "HH:mm:ss"));
+  //   }, 1000);
+
+  //   return () => {
+  //     clearInterval(handle);
+  //   };
+  // }, []);
 
   return (
     <div>
