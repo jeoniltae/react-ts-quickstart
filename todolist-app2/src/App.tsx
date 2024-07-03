@@ -1,7 +1,41 @@
-import "./App.css";
+import { useState } from "react";
+import TodoList from "./TodoList";
+
+export type TodoListItemType = {
+  id: number;
+  todo: string;
+};
 
 function App() {
-  return <div>123</div>;
+  const [todoList, setTodoList] = useState<Array<TodoListItemType>>([]);
+  const [todo, setTodo] = useState<string>("");
+
+  const addTodo = (todo: string) => {
+    let newTodoList = [
+      ...todoList,
+      {
+        id: new Date().getTime(),
+        todo: todo,
+      },
+    ];
+
+    setTodoList(newTodoList);
+    setTodo("");
+  };
+
+  return (
+    <div className="boxStyle">
+      <input
+        type="text"
+        value={todo}
+        onChange={(e) => setTodo(e.target.value)}
+      />
+      <button onClick={() => addTodo(todo)}>Add Todo</button>
+      <br />
+      <TodoList todoList={todoList} />
+      <div>todo 개수: {todoList.length}</div>
+    </div>
+  );
 }
 
 export default App;
