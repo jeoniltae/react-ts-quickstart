@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { TodoListItemType } from "./App";
 import TodoListItem from "./TodoListItem";
 
@@ -17,4 +17,5 @@ const TodoList = (props: Props) => {
   );
 };
 
-export default TodoList;
+// React.memo 고차 함수 적용
+export default memo(TodoList);
