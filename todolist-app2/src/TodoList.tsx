@@ -4,6 +4,7 @@ import TodoListItem from "./TodoListItem";
 
 type Props = {
   todoList: Array<TodoListItemType>;
+  deleteTodo: (id: number) => void;
 };
 
 const TodoList = (props: Props) => {
@@ -11,7 +12,13 @@ const TodoList = (props: Props) => {
   return (
     <ul>
       {props.todoList.map((item) => {
-        return <TodoListItem key={item.id} todoListItem={item} />;
+        return (
+          <TodoListItem
+            key={item.id}
+            todoListItem={item}
+            deleteTodo={props.deleteTodo}
+          />
+        );
       })}
     </ul>
   );
